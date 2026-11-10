@@ -1,3 +1,10 @@
+color palet : 
+#c3e978  (hint)
+#f3f6ff 
+#8ec1ff
+#3770bf
+#0055a6
+
 **#RANCANGAN DATABASE**
 database lost and found kampus
 
