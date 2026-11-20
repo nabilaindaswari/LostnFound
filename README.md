@@ -11,13 +11,14 @@ Proyek ini dibuat sebagai tugas Mata Kuliah Pemrograman Web dengan framework Lar
 
 - **Autentikasi pengguna** — registrasi (nama, NIM, email, nomor telepon) dan login. NIM dan email bersifat unik sehingga satu mahasiswa hanya memiliki satu akun.
 - **Barang temuan (`found`)** — pelapor mengunggah satu foto dan menyusun 4 pertanyaan verifikasi, masing-masing dengan 3 pilihan jawaban. Deskripsi barang sengaja dibuat umum agar tidak membocorkan jawaban.
-- **Klaim barang** — pencari menjawab 4 pertanyaan. Jawaban harus seluruhnya benar untuk melihat kontak pelapor dan lokasi barang disimpan. Maksimal 2 percobaan per barang, tidak dapat mengklaim barang sendiri, dan klaim ditolak bila status postingan sudah `done` atau `closed`.
+- **Klaim barang** — pencari menjawab 4 pertanyaan. Jawaban harus seluruhnya benar untuk melihat kontak pelapor dan informasi pengambilan (`kept_by`: barang disimpan di mana, oleh siapa, dan siapa yang boleh mengambil). Maksimal 2 percobaan per barang, tidak dapat mengklaim barang sendiri, dan klaim ditolak bila status postingan sudah `done` atau `closed`.
 - **Barang hilang (`lost`)** — pemilik membuat postingan tanpa pertanyaan verifikasi. Kontak pemilik langsung dapat dilihat oleh pengguna yang sudah login.
 - **Status postingan** — `open`, `claimed`, `done`, dan `closed`. Postingan yang dihapus memakai *soft delete* sehingga datanya tetap tersimpan.
 - **Pencarian dan filter** — pencarian berdasarkan nama atau deskripsi barang, serta filter kategori dan lokasi kampus.
 - **Panel admin** — memantau aktivitas klaim, memblokir pengguna, dan mengelola seluruh postingan.
+- **Penonaktifan akun** — pengguna diblokir lewat kolom `banned_at`, tidak pernah dihapus, supaya postingan dan riwayat klaim tetap tersimpan. Di tampilan publik identitasnya diganti pesan "Pengguna telah dinonaktifkan" disertai disclaimer bahwa interaksi di luar aplikasi menjadi tanggung jawab pengguna.
 
-Beberapa fitur di atas masih dikembangkan secara bertahap.
+Per 20 Nov 2026, fondasi database sudah siap. Fitur autentikasi, postingan, klaim, pencarian, dan panel admin masih dikembangkan secara bertahap.
 
 ## Teknologi
 
@@ -115,12 +116,12 @@ composer dev
 
 | No | Tanggal | Milestone | Catatan dan hal yang berubah |
 |----|---------|-----------|------------------------------|
-| 1 | 9–11 Nov 2026 | Tahap 1 | Inisialisasi Laravel 12, rancangan database dan palet warna, layout dasar Tailwind, pemisahan `head`/`layout` menjadi komponen, serta menu navigasi responsif. |
-| 2 | 16–20 Nov 2026 | | Cleanup skeleton: hapus komponen kosong, SASS, CSS lama, dan dependency Bootstrap; Tailwind v4 diaktifkan lewat Vite; palet dipindah ke `@theme`; brand diambil dari `config('app.name')`. |
-| 3 | | Tahap 2 | |
-| 4 | | | |
-| 5 | | Tahap akhir | |
-| 6 | | | |
+| 1 | 9–11 Nov 2026 | Inisialisasi | Inisialisasi Laravel 12, rancangan database dan palet warna, layout dasar Tailwind, pemisahan `head`/`layout` menjadi komponen, serta menu navigasi responsif. |
+| 2 | 16–20 Nov 2026 | Tahap 0 | Cleanup skeleton: hapus komponen kosong, SASS, CSS lama, dan dependency Bootstrap; Tailwind v4 diaktifkan lewat Vite; palet dipindah ke `@theme`; brand diambil dari `config('app.name')`. |
+| 3 | 20 Nov 2026 | Tahap 1 | Migration domain: `users` (NIM, phone, role, `banned_at`) serta tabel `categories`, `locations`, `items`, `item_questions`, dan `claims`. Kolom `kept_at` diganti `kept_by`. |
+| 4 | | Tahap 2 | Belum dikerjakan |
+| 5 | | Tahap 3–11 | Belum dikerjakan |
+| 6 | | Tahap akhir | Belum dikerjakan |
 
 ## Rancangan Database
 
