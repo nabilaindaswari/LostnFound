@@ -9,13 +9,13 @@ color palet :
 database lost and found kampus
 
 # USERS
-01. id
-02. name
-03. nim (boleh kosong, untuk admin)
-04. email
-05. phone
-06. role
-07. password
+01. id .
+02. name .
+03. nim . (boleh kosong, untuk admin)
+04. email .
+05. phone .
+06. role .
+07. password .
 08. banned_at
 09. email_verified_at (bawaan laravel)
 10. remember_token (bawaan laravel)
@@ -27,6 +27,10 @@ terdapat dua role, yaitu user dan admin.
 
 nim dan email tidak boleh kembar, biar satu mahasiswa cuma punya satu akun.
 banned_at diisi kalau user diblokir admin, user tidak dihapus supaya postingan dan riwayat klaimnya tetap ada.
+
+Akun **tidak pernah di-hard delete** — penonaktifan cukup mengisi `banned_at` (2026-11-20, keputusan user). Data tetap tersimpan di database untuk pendataan. Di tampilan publik, identitas user yang dinonaktifkan ditampilkan sebagai tulisan "Pengguna telah dinonaktifkan"; admin tetap bisa melihat data lengkapnya. Karena itu `items.user_id` tetap NOT NULL dengan `restrictOnDelete()` sebagai pengaman, bukan `nullable()` + `nullOnDelete()`.
+
+Postingan milik user yang dinonaktifkan **tidak ditutup otomatis** — tetap tampil (2026-11-20, keputusan user). Di tempat yang seharusnya menampilkan identitas/kontak pelapor, tampilkan pesan "Pengguna telah dinonaktifkan" disertai peringatan: "Segala interaksi di luar aplikasi menjadi tanggung jawab pengguna masing-masing; pihak aplikasi tidak bertanggung jawab atas kesepakatan di luar aplikasi."
 
 	a. searcher
 : mencari postingan barang temuan. untuk mendapatkan informasi pelapor, searcher harus menjawab 4 pertanyaan terkait detail barang, jawaban harus 100% benar. maksimal 2x percobaan per barang.
@@ -95,7 +99,7 @@ kys : Kiyosu
 07. description
 08. location_detail
 09. event_date
-10. kept_at
+10. kept_by
 11. photo
 12. status
 13. created_at, updated_at
@@ -106,7 +110,7 @@ type ada dua:
 - lost : barang hilang
 
 event_date = tanggal ketemu (found) atau tanggal hilang (lost).
-kept_at = barang disimpan di mana, cuma untuk found. bersifat rahasia, baru muncul setelah klaim berhasil.
+kept_by = informasi pengambilan barang: disimpan di mana, oleh siapa, dan siapa yang boleh mengambil. cuma untuk found. bersifat rahasia, baru muncul setelah klaim berhasil.
 description harus umum, jangan tulis detail yang jadi jawaban pertanyaan.
 photo cuma satu. wajib untuk found, opsional untuk lost.
 deleted_at untuk soft delete, postingan yang dihapus admin cuma disembunyikan.
@@ -151,4 +155,4 @@ dicatat setiap kali searcher menjawab pertanyaan.
 - tidak bisa klaim kalau status sudah done atau closed
 - klaim benar pertama mengubah status dari open jadi claimed
 
-kalau benar, searcher dapat melihat semua informasi pelapor (name, nim, email, phone) dan kept_at.
+kalau benar, searcher dapat melihat semua informasi pelapor (name, nim, email, phone) dan kept_by.
