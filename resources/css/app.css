@@ -7,6 +7,12 @@
 @source "../**/*.vue";
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Satoshi', sans-serif;
+    
+    /* warna */
+    --color-primary: #0055a6;   /* biru tua: nav */
+    --color-white: #f3f6ff;     /* putih kebiruan: background & tulisan */
+    --color-secondary: #3770bf; /* biru sedang: ikon search */
+    --color-sky: #8ec1ff;      /* biru muda: garis saat search diklik */
+    --color-hint: #c3e978;    /* hijau muda: menu saat disorot */
 }

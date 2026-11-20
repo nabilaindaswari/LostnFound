@@ -5,8 +5,9 @@
     {{$title}}
 </x-head>
 
-<body>
+<body class="bg-white font-sans">
    <x-nav>{{ $name }}</x-nav>
+   
 </body>
 
 </html>
