@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Location extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     // Mass assignment
     protected $fillable = ['code', 'name'];
     

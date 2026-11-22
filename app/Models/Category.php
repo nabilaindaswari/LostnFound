@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = ['code', 'name'];
 
     public function items(): HasMany
