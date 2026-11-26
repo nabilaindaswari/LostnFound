@@ -23,7 +23,7 @@ class UserSeeder extends Seeder{
         ]);
         User::create([
             'name'=>'User01',
-            'nim'=> 'D111111111111',
+            'nim'=> 'D1111111111',
             'email'=>'User01@gmail.com',
             'phone'=> '081111111111',
             'role'=> 'user',
