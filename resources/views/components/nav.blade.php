@@ -14,8 +14,8 @@
                     method="GET">
                     <input type="search" placeholder="Search"
                         class="peer w-32 focus:w-40 sm:w-48 sm:focus:w-64 transition-all duration-300 ease-in-out bg-white/15 hover:bg-white/25 focus:bg-white text-xs text-white focus:text-primary placeholder-white/60 focus:placeholder-secondary/60 rounded-full py-2 pl-9 pr-4 outline-none focus:ring-2 focus:ring-sky" />
-                    <svg class="w-4 h-4 absolute left-3 pointer-events-none text-white peer-focus:text-[#3770bf] transition-colors" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 absolute left-3 pointer-events-none text-white peer-focus:text-secondary transition-colors"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -30,21 +30,23 @@
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 rounded-full hover:text-primary hover:bg-[#c3e978] transition-colors">Kehilangan</a>
+                                class="block px-4 py-2 rounded-full hover:text-primary hover:bg-hint transition-colors">Kehilangan</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 rounded-full hover:text-primary hover:bg-[#c3e978] transition-colors">Notifikasi</a>
+                                class="block px-4 py-2 rounded-full hover:text-primary hover:bg-hint transition-colors">Notifikasi</a>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center gap-2 px-4 py-2 rounded-full hover:text-primary hover:bg-[#c3e978] transition-colors">
-                                {{ $slot }}
-                                <span aria-hidden="true" class="w-6 h-6 shrink-0 bg-current"
-                                    style="mask: url('https://img.icons8.com/?size=100&id=T5gc34fnNJe6&format=png&color=000000') center / contain no-repeat; -webkit-mask: url('https://img.icons8.com/?size=100&id=T5gc34fnNJe6&format=png&color=000000') center / contain no-repeat;"></span>
-                            </a>
-                        </li>
+                        <li class="flex items-center gap-2 px-4 py-2">
+                            @auth
+                            <span>{{ auth()->user()->name }}</span>
+                            <x-logout />
+                            @endauth
 
+                            @guest
+                            <a href="{{ route('login') }}">Masuk</a>
+                            <a href="{{ route('register') }}">Daftar</a>
+                            @endguest
+                        </li>
 
                     </ul>
 
@@ -85,14 +87,18 @@
                     <a href="#" @click="open = false"
                         class="inline-block pb-1 border-b border-white/40 hover:opacity-60 transition-opacity">Notifikasi</a>
                 </li>
-                <li>
-                    <a href="#" @click="open = false"
-                        class="inline-flex items-center gap-3 hover:opacity-60 transition-opacity">
-                        {{ $slot }}
-                        <span aria-hidden="true" class="w-8 h-8 shrink-0 bg-current"
-                            style="mask: url('https://img.icons8.com/?size=100&id=T5gc34fnNJe6&format=png&color=000000') center / contain no-repeat; -webkit-mask: url('https://img.icons8.com/?size=100&id=T5gc34fnNJe6&format=png&color=000000') center / contain no-repeat;"></span>
-                    </a>
+                <li class="flex items-center justify-center gap-3">
+                    @auth
+                    <span>{{ auth()->user()->name }}</span>
+                    <x-logout />
+                    @endauth
+
+                    @guest
+                    <a href="{{ route('login') }}" @click="open = false">Masuk</a>
+                    <a href="{{ route('register') }}" @click="open = false">Daftar</a>
+                    @endguest
                 </li>
             </ul>
         </div>
     </nav>
+    

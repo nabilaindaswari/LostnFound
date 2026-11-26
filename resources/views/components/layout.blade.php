@@ -6,7 +6,7 @@
 </x-head>
 
 <body class="bg-white font-sans">
-   <x-nav>{{ $name }}</x-nav>
+   <x-nav></x-nav>
    
 </body>
 
