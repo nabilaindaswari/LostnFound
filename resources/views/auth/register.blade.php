@@ -19,14 +19,14 @@ $title = 'Register'
         <x-asideAuth>register</x-asideAuth>
 
         <!-- right panel-->
-        <main class="flex flex-col justify-center w-full md:w-7/12 px-4 sm:px-6 lg:px-8 py-10">
+        <main class="flex flex-col justify-center w-full md:w-7/12 px-10 sm:px-6 lg:px-8 py-10">
             <div class="w-full max-w-md mx-auto">
 
                 <!-- heading -->
                 <div class="mb-2 mt-1">
                     <h1 class="text-3xl font-semibold tracking-tight">
                         Daftar ke
-                        <span class="text-base text-[1.5rem] font-bold tracking-tight bg-hint px-[0.5rem]">
+                        <span class="text-base text-[1.5rem] font-bold tracking-tight bg-hint px-2">
                             {{ config('app.name', 'NamaBrand') }}
                         </span>
                     </h1>
@@ -76,7 +76,8 @@ $title = 'Register'
                     passwordError() {
                         if (!this.password) return '';
                         if (this.password.length < 8) return 'Minimal 8 karakter, baru ' + this.password.length + '.';
-                        if (!/[a-zA-Z]/.test(this.password)) return 'Harus ada huruf.';
+                        if (!/[A-Z]/.test(this.password)) return 'Harus ada huruf besar.';
+                        if (!/[a-z]/.test(this.password)) return 'Harus ada huruf kecil.';
                         if (!/[0-9]/.test(this.password)) return 'Harus ada angka.';
                         if (!/[^a-zA-Z0-9]/.test(this.password)) return 'Harus ada simbol, contoh: ! @ # $';
                         return '';
@@ -135,7 +136,7 @@ $title = 'Register'
                             Email <span class="text-secondary text-xs"> *student </span>
                         </label>
 
-                        <input type="email" id="email" name="email" x-model="email"
+                        <input type="email" id="email" name="email" x-model="email" maxlength="100"
                             placeholder="nim@student.untan.ac.id" required autocomplete="email"
                             :class="emailError() ? 'border-red-500' : 'border-secondary/25'"
                             class="w-full px-3.5 py-2.5 rounded-lg border text-sm placeholder:text-secondary/50 outline-none focus:border-sky focus:ring-2 focus:ring-sky/40 transition-colors" />
@@ -199,9 +200,7 @@ $title = 'Register'
                         </div>
                         <p x-show="passwordError()" x-text="passwordError()" class="mt-1.5 text-xs text-red-600"
                             style="display: none;"></p>
-                        <p x-show="!passwordError()" class="mt-1 text-xs text-secondary">
-                            *Minimal 8 karakter, berisi huruf, angka, dan simbol.
-                        </p>
+                        
                         @error('password')
                             <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
                         @enderror

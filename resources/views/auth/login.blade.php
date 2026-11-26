@@ -25,7 +25,7 @@ $title = 'Login'
                 <div class="mb-4 mt-4 p">
                     <h1 class="text-3xl font-semibold tracking-tight">
                         Masuk ke
-                        <span class="text-base text-[1.5rem] font-bold tracking-tight bg-hint px-[0.5rem]">
+                        <span class="text-base text-[1.5rem] font-bold tracking-tight bg-hint px-2">
                             {{ config('app.name', 'NamaBrand') }}
                         </span>
                     </h1>
@@ -36,7 +36,7 @@ $title = 'Login'
 
                 <!-- status message, kalo misalnya berhasil logout -->
                 @if (session('success'))
-                <div class="mb-6 px-4 py-3 rounded-lg border border-primary/20 bg-hint/30 text-sm">
+                <div class="mb-6 px-4 py-3 rounded-lg border border-secondary bg-hint text-sm">
                     {{ session('success') }}
                 </div>
                 @endif
@@ -52,7 +52,7 @@ $title = 'Login'
 
                         <input type="email" id="email" name="email" value="{{ old('email') }}"
                             placeholder="nim@student.untan.ac.id" required autofocus autocomplete="username"
-                            class="w-full px-3.5 py-2.5 rounded-lg border border-secondary/25 text-sm placeholder:text-secondary/50 outline-none focus:border-sky focus:ring-2 focus:ring-sky/40 transition-colors @error('email') border-red-500 @enderror" />
+                            class="w-full px-3.5 py-2.5 rounded-lg border border-secondary text-sm placeholder:text-secondary/50 outline-none focus:border-sky focus:ring-2 focus:ring-sky/40 transition-colors @error('email') @enderror" />
                         @error('email')
                         <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
                         @enderror
@@ -69,7 +69,7 @@ $title = 'Login'
 
                         <input type="password" id="password" name="password" placeholder="••••••••" required
                             autocomplete="current-password"
-                            class="w-full px-3.5 py-2.5 rounded-lg border border-secondary/25 text-sm placeholder:text-secondary/50 outline-none focus:border-sky focus:ring-2 focus:ring-sky/40 transition-colors @error('password') border-red-500 @enderror" />
+                            class="w-full px-3.5 py-2.5 rounded-lg border border-secondary/25 text-sm placeholder:text-secondary/50 outline-none focus:border-sky focus:ring-2 focus:ring-sky/40 transition-colors @error('password') @enderror" />
                         @error('password')
                         <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
                         @enderror
