@@ -18,7 +18,7 @@ Proyek ini dibuat sebagai tugas Mata Kuliah Pemrograman Web dengan framework Lar
 - **Panel admin** — memantau aktivitas klaim, memblokir pengguna, dan mengelola seluruh postingan.
 - **Penonaktifan akun** — pengguna diblokir lewat kolom `banned_at`, tidak pernah dihapus, supaya postingan dan riwayat klaim tetap tersimpan. Di tampilan publik identitasnya diganti pesan "Pengguna telah dinonaktifkan" disertai disclaimer bahwa interaksi di luar aplikasi menjadi tanggung jawab pengguna.
 
-Per 20 Nov 2026, fondasi database sudah siap. Fitur autentikasi, postingan, klaim, pencarian, dan panel admin masih dikembangkan secara bertahap.
+Per 27 Nov 2026, struktur database, model, data awal, dan alur autentikasi telah tersedia. Fitur barang temuan telah mencakup katalog, formulir pelaporan, dan halaman detail dengan penyembunyian informasi sensitif. Fitur klaim, barang hilang, pencarian, panel admin, dan penyempurnaan akhir masih dikembangkan secara bertahap.
 
 ## Teknologi
 
@@ -114,15 +114,14 @@ composer dev
 
 ## Tabel Progress
 
-| No | Tanggal | Milestone | Catatan dan hal yang berubah |
+| No | Tanggal | Milestone | Progress |
 |----|---------|-----------|------------------------------|
-| 1 | 9–11 Nov 2026 | Inisialisasi | Inisialisasi Laravel 12, rancangan database dan palet warna, layout dasar Tailwind, pemisahan `head`/`layout` menjadi komponen, serta menu navigasi responsif. |
-| 2 | 16–20 Nov 2026 | Tahap 0 | Cleanup skeleton: hapus komponen kosong, SASS, CSS lama, dan dependency Bootstrap; Tailwind v4 diaktifkan lewat Vite; palet dipindah ke `@theme`; brand diambil dari `config('app.name')`. |
-| 3 | 20 Nov 2026 | Tahap 1 | Migration domain: `users` (NIM, phone, role, `banned_at`) serta tabel `categories`, `locations`, `items`, `item_questions`, dan `claims`. Kolom `kept_at` diganti `kept_by`. |
-| 4 | | Tahap 2 | Belum dikerjakan |
-| 5 | | Tahap 3–11 | Belum dikerjakan |
-| 6 | | Tahap akhir | Belum dikerjakan |
+| 1 | 9 Nov 2026 | Tahap 1 | Inisialisasi proyek Laravel 12. |
+| 2 | 11 Nov 2026 | | Penambahan palet warna, layout dasar berbasis Tailwind, pemisahan `head` menjadi komponen tersendiri dengan penerusan judul dan nama melalui slot, serta menu navigasi responsif untuk tampilan mobile. |
+| 3 | 20 Nov 2026 | | Pembersihan struktur proyek: komponen kosong, SASS, CSS lama, dan dependensi Bootstrap dihapus. Tailwind v4 diintegrasikan melalui Vite, palet warna dipindahkan ke `@theme`, dan brand diambil dari konfigurasi. README mulai diisi seiring proses integrasi pull request pertama. Migration domain dibuat untuk `users` dan tabel-tabel terkait, dengan kolom `kept_at` diganti menjadi `kept_by`. Tabel progress serta keterangan penonaktifan akun diperbarui sebelum pull request kedua diintegrasikan. |
+| 4 | 22 Nov 2026 | Tahap 2 | Pembuatan model Eloquent untuk user, kategori, lokasi, barang, pertanyaan, dan klaim beserta relasinya. Jawaban benar disembunyikan dari browser. Data awal diisi dengan 15 kategori, 16 lokasi, akun admin dan user, serta satu barang contoh. Kategori dan lokasi tidak menggunakan kolom waktu. |
+| 5 | 26 Nov 2026 | | Alur autentikasi diselesaikan. formulir registrasi dengan validasi data mahasiswa, proses masuk dan keluar, pembatasan akses bagi tamu dan pengguna yang telah masuk, pemblokiran akun, serta penyiapan pembatasan hak admin. Halaman dan navigasi kini menyesuaikan status pengguna, dan tampilan halaman masuk dirapikan. |
+| 6 | 27 Nov 2026 | | Fitur barang temuan dibangun. Pengendali beserta empat rute yang ditulis terpisah, formulir pelaporan dengan unggah foto wajib dan empat pertanyaan verifikasi, penyimpanan barang dan pertanyaan dalam satu transaksi, katalog kartu yang menampilkan status, serta halaman detail yang menyembunyikan kontak pelapor dan lokasi penyimpanan sampai klaim dinyatakan benar. Model pertanyaan dan seeder disesuaikan, tautan navigasi dan slot layout diperbaiki agar seluruh halaman tersambung. |
 
 ## Rancangan Database
-
 Struktur tabel, relasi, dan aturan bisnis aplikasi dijelaskan lebih lengkap di file `rancangan.md`.
