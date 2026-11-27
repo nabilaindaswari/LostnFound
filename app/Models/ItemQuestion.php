@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ItemQuestion extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     // Mass assignment
     protected $fillable = ['item_id', 'order', 'question', 'option_a', 'option_b', 'option_c', 'correct_option'];
 

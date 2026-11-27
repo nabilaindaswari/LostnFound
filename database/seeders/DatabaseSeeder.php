@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         UserSeeder::class,
         CategorySeeder::class,
         LocationSeeder::class,
-        ItemSeeder::class,
+        // ItemSeeder::class, // dinonaktifkan sementara — dummy dibuat ulang di akhir
     ]);
     }
 }

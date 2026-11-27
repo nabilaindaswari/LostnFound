@@ -24,10 +24,10 @@ class UserSeeder extends Seeder{
         User::create([
             'name'=>'User01',
             'nim'=> 'D1111111111',
-            'email'=>'User01@gmail.com',
+            'email'=>'D1111111111@student.untan.ac.id',
             'phone'=> '081111111111',
             'role'=> 'user',
-            'password'=> '1user123'
+            'password'=> '%User123'
         ]);
 
         // keterbatasan: email tidak mengecek apakah email benar benar available
