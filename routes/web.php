@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FoundItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -26,12 +27,19 @@ Route::post('/register', [AuthController::class, 'register'])->name('postRegiste
 Route::post('/logout', [AuthController::class, 'logout'])->name('postLogout')->middleware(['auth']);
 
 
+// //// DISPLAY
+
+// temuan
+Route::get('/temuan', [FoundItemController::class, 'showCatalog'])->name('temuan.index');
+Route::get('/temuan/create', [FoundItemController::class, 'showCreate'])->name('temuan.create')->middleware(['auth', 'banned']);
+Route::get('/temuan/{id}', [FoundItemController::class, 'showid'])->name('temuan.show')->middleware(['auth', 'banned']);
+Route::post('/temuan', [FoundItemController::class, 'createTemuan'])->name('temuan.post')->middleware(['auth', 'banned']);
 
 
 Route::get('/', function () {
     return view('home', ['title'=> 'Home']);
-    // nama masih sementara
-})->name('home')->middleware(['auth', 'banned']);
+    // masih sementara
+})->name('home');
 
 
 Route::fallback(function () {

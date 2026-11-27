@@ -25,7 +25,7 @@
             <div class="hidden md:flex items-center gap-2">
                 <ul class="flex items-center gap-1 text-sm font-medium">
                     <li>
-                        <a href="#"
+                        <a href={{ route('temuan.index') }}
                             class="block px-3 py-2 rounded-full hover:text-primary hover:bg-hint transition-colors">Kehilangan</a>
                     </li>
                     <li>

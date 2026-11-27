@@ -5,9 +5,10 @@
     {{$title}}
 </x-head>
 
+
 <body class="bg-white font-sans">
    <x-nav></x-nav>
-   
+   {{ $slot }}
 </body>
 
 </html>
